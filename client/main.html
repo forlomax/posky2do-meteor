@@ -1,0 +1,71 @@
+<head>
+  <title>Posky</title>
+</head>
+
+<body>
+    
+</body>
+
+<template name="welcome">
+  <div class="container">
+    <div class="welkom">
+      <h3>Welcome to Datasync</h3>
+      <a href="/reports" class="btn btn-info">Enter</a>
+    </div>
+  </div>
+</template>
+
+<!--Application Layout-->
+<template name="ApplicationLayout">
+  {{> yield "navbar"}}
+  {{> yield "notes"}}
+  {{> yield "main"}}
+  <div class="footer">
+    <p>&#0169;  2018 Testing Meteor Way of doing stuff</p>
+  </div>
+</template>
+
+<template name="navbar">
+    <nav class="blue">
+        <div class="container">
+          <div class="nav-wrapper">
+            <a href="/" class="brand-logo">Datasync</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li class="nav-item">{{> loginButtons}}</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+  {{#if currentUser}}
+  <ul>
+     <li><a href="/add">Create sample data</a></li>
+     <li><a href="/reports">Load json</a></li>
+  </ul>
+    
+{{/if}}
+</template>
+
+  <template name="reports">
+      <div class="container">
+          {{#if currentUser}}
+          {{#each reports}}
+         <li class="collection-item">{{text}}</li>
+         {{/each}}
+         {{/if}}
+      </div>
+  </template>
+
+  <template name="add">
+        <div class="col-md-6">
+          <h4>Add Sample Data</h4>
+          <form class="new-report">
+              <input type="text" name="vat"/>
+              <input type="text" name="group"/>
+              <input type="text" name="payment_method"/>
+              <button class="btn btn-success">Save</button>
+            </form>
+        </div>
+    </template>
+    
+  
